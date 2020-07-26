@@ -7,6 +7,7 @@ import 'react-notifications/lib/notifications.css';
 
 class AppWrapper extends React.Component {
 	createNotification = (type, message, title) => {
+		// eslint-disable-next-line default-case
 		switch (type) {
 			case 'info':
 				NotificationManager.info(message);
