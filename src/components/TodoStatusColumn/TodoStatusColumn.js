@@ -1,9 +1,10 @@
 import React from 'react';
+import './TodoStatusColumn.css';
 
 const TodoStatusColumn = (props) => {
 	const { itemsList, title, transitionStateText, handleStateTransition } = props;
 	return (
-		<div style={{ flex: 1 }}>
+		<div className="todoStatusColumn">
 			<h3> {title} </h3>
 			{
 				itemsList && itemsList.length > 0 && itemsList.map(todo => {

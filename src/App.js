@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TodoStatusColumn from './components/TodoStatusColumn'
+import TodoStatusColumn from './components/TodoStatusColumn/TodoStatusColumn';
 import TodoList from './components/TodoList/TodoList';
 import { doTransition } from './Utils/app.utils'
 import './App.css';
