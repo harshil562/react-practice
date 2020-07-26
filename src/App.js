@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TodoStatusColumn from './components/TodoStatusColumn'
 import TodoList from './components/TodoList/TodoList';
-import { doTransition } from './Utils/app.utils'
+import { doTransition } from './utils/app.utils'
 import './App.css';
 
 class App extends Component {
