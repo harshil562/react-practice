@@ -1,3 +1,7 @@
 .errorText {
     color: red;
 }
+
+.todolistContainer {
+    flex: 1;
+}

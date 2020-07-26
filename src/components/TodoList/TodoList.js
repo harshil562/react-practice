@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import AppModal from '../Modal/AppModal'
 import './TodoList.css'
 
 class TodoList extends Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			showTodoDetailsModal: false,
-			selectedTodo: null
-		}
+	
+	state = {
+		showTodoDetailsModal: false,
+		selectedTodo: null
 	}
 
 	handleToggleTodoModal = (todo) => {
@@ -49,7 +46,7 @@ class TodoList extends Component {
 			onChange, handleEnterButton, handleAddTodo } = this.props.handlers;
 
 		return (
-			<div style={{ flex: 1 }}>
+			<div className="todolistContainer">
 				<h3>Todo App</h3>
 				<input
 					type="text"
@@ -72,38 +69,32 @@ class TodoList extends Component {
 				}
 				{
 					showTodoDetailsModal && (
-						<Modal show={showTodoDetailsModal} onHide={this.handleToggleTodoModal}>
-							<Modal.Header closeButton>
-								<Modal.Title>Modal heading</Modal.Title>
-							</Modal.Header>
-							<Modal.Body>
-								<>
-									<p style={selectedTodo.completed ? { color: "green" } : null}>{selectedTodo.name}</p>
-									<button onClick={() => handleOnToggle(selectedTodo, 'completed')}> {selectedTodo.completed ?
-										'Mark as incomplete' : 'Complete'} </button>
-									<button onClick={() => this.handleOnDeleteTodo(selectedTodo)}> delete </button>
-									<button onClick={() => handleOnToggle(selectedTodo, 'showDescription')}> Description </button>
-									<button onClick={() => this.handleMoveToInProgressTodo(selectedTodo)}> Move to In Progress </button>
-									<br />
-									{selectedTodo.showDescription &&
-										<textarea
-											onChange={(event) => handleSaveCurrentTodoDescription(event, selectedTodo)}
-											value={selectedTodo.description}
-											rows="4"
-											cols="50"
-										/>
-									}
-								</>
-							</Modal.Body>
-							<Modal.Footer>
-								<Button variant="secondary" onClick={this.handleToggleTodoModal}>
-									Close
-          			</Button>
-								<Button variant="primary" onClick={this.handleSaveTodo}>
-									Save Changes
-          			</Button>
-							</Modal.Footer>
-						</Modal>
+						<AppModal
+							title={'Todo Modal'}
+							show={showTodoDetailsModal}
+							onClose={this.handleToggleTodoModal}
+							onSave={this.handleSaveTodo}
+							footerOne={'Close'}
+							footerTwo={'Save Changes'}
+						>
+							<>
+								<p style={selectedTodo.completed ? { color: "green" } : null}>{selectedTodo.name}</p>
+								<button onClick={() => handleOnToggle(selectedTodo, 'completed')}> {selectedTodo.completed ?
+									'Mark as incomplete' : 'Complete'} </button>
+								<button onClick={() => this.handleOnDeleteTodo(selectedTodo)}> delete </button>
+								<button onClick={() => handleOnToggle(selectedTodo, 'showDescription')}> Description </button>
+								<button onClick={() => this.handleMoveToInProgressTodo(selectedTodo)}> Move to In Progress </button>
+								<br />
+								{selectedTodo.showDescription &&
+									<textarea
+										onChange={(event) => handleSaveCurrentTodoDescription(event, selectedTodo)}
+										value={selectedTodo.description}
+										rows="4"
+										cols="50"
+									/>
+								}
+							</>
+						</AppModal>
 					)
 				}
 			</div>

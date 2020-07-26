@@ -5,15 +5,12 @@ import { doTransition } from './Utils/app.utils'
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todoList: [],
-      currentTodo: {},
-      errorText: "",
-      inProgressTodoList: [],
-      completedTodoList: []
-    }
+  state = {
+    todoList: [],
+    currentTodo: {},
+    errorText: "",
+    inProgressTodoList: [],
+    completedTodoList: []
   }
 
   onChange = (event) => {
@@ -91,7 +88,7 @@ class App extends Component {
 
   handleInProgressButtonClick = (selectedTodo) => {
     const { todoList, inProgressTodoList } = this.state;
-    const updatedLists =  doTransition(todoList, inProgressTodoList, selectedTodo );
+    const updatedLists = doTransition(todoList, inProgressTodoList, selectedTodo);
     const { updatedFromList, updatedToList } = updatedLists;
     this.setState({
       todoList: updatedFromList,
@@ -101,7 +98,7 @@ class App extends Component {
 
   handleMoveToCompleteButtonClick = (inProgressTodo) => {
     const { inProgressTodoList, completedTodoList } = this.state;
-    const updatedLists =  doTransition(inProgressTodoList, completedTodoList, inProgressTodo );
+    const updatedLists = doTransition(inProgressTodoList, completedTodoList, inProgressTodo);
     const { updatedFromList, updatedToList } = updatedLists;
     this.setState({
       inProgressTodoList: updatedFromList,
@@ -111,7 +108,7 @@ class App extends Component {
 
   handleMoveToInProgress = (completedTodo) => {
     const { inProgressTodoList, completedTodoList } = this.state;
-    const updatedLists =  doTransition(completedTodoList, inProgressTodoList, completedTodo );
+    const updatedLists = doTransition(completedTodoList, inProgressTodoList, completedTodo);
     const { updatedFromList, updatedToList } = updatedLists;
     this.setState({
       inProgressTodoList: updatedToList,
